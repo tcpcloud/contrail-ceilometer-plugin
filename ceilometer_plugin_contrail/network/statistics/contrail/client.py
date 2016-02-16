@@ -14,13 +14,20 @@
 
 import copy
 
-from oslo.config import cfg
+try:
+    from oslo.config import cfg
+except ImportError:
+    from oslo_config import cfg
+
 import requests
 import six
 from six.moves.urllib import parse as urlparse
 
 from ceilometer.i18n import _  # noqa
-from ceilometer.openstack.common import log
+try:
+    from ceilometer.openstack.common import log
+except ImportError:
+    from oslo_log import log
 
 CONF = cfg.CONF
 CONF.import_opt('http_timeout', 'ceilometer.service')
